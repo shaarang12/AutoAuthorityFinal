@@ -250,7 +250,7 @@ app.post('/rto_login', async(req, res)=>{
         }
     })
 })
-var date
+
 //login route for vehicle owner
 app.post('/login', async(req, res)=>{
     const user_id = req.body.username
@@ -279,12 +279,13 @@ app.post('/login', async(req, res)=>{
                         data1 = JSON.parse(JSON.stringify(result))                    
 
                     //querying the db for license validity
+                    
                     pool.query('SELECT validity from user_license WHERE user_id = ?', [user_id], async(err, result)=>{
                         if(err)
                             console.log('Error Fetching License Validity')
                         else if(result.length == 1){
                             console.log("I HAVE LICENSE")
-                            date = result[0].validity
+                            var date = result[0].validity
                             formattedDate = date.toLocaleDateString('en-GB')
                             var currentDate = new Date()    
                             currentDate = currentDate.toLocaleDateString('en-GB')
