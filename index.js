@@ -250,7 +250,7 @@ app.post('/rto_login', async(req, res)=>{
         }
     })
 })
-
+var date
 //login route for vehicle owner
 app.post('/login', async(req, res)=>{
     const user_id = req.body.username
